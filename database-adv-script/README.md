@@ -45,3 +45,39 @@ This query identifies users who have made more than 3 bookings using a correlate
 This type of correlated subquery is powerful for filtering based on aggregated values related to each record in the main table.
 
 This approach ensures we get the complete set of data, equivalent to what a FULL OUTER JOIN would provide.
+
+
+# Task 2: Aggregations and Window Functions
+
+This task demonstrates the use of SQL aggregation functions and window functions to analyze booking data in the Airbnb database.
+
+## Query 1: Bookings per User
+
+This query counts the total number of bookings made by each user using the COUNT function with GROUP BY. 
+
+Key features:
+- Uses LEFT JOIN to include all users, even those without bookings
+- Calculates both the total number of bookings and the total amount spent by each user
+- Orders results by booking count and total spent, showing the most active users first
+
+## Query 2: Property Ranking by Bookings
+
+This query ranks properties based on their booking counts using three different window functions:
+
+1. **RANK()**: Assigns a rank to each property, with ties receiving the same rank (skipping subsequent ranks)
+2. **DENSE_RANK()**: Similar to RANK but without gaps in the ranking sequence
+3. **ROW_NUMBER()**: Assigns a unique sequential number to each property, with ties broken by the secondary ordering criterion (price_per_night)
+
+The query demonstrates how different window functions handle the same dataset differently, particularly when there are ties.
+
+## Query 3: Location-Based Property Ranking
+
+This query extends the analysis by:
+- Calculating the average rating and review count for each property
+- Using the PARTITION BY clause to create rankings within each location
+- Allowing you to see the best-rated properties in each location separately
+
+This location-based analysis is particularly valuable for:
+- Market analysis in different regions
+- Identifying top-performing properties in each area
+- Understanding local competition dynamics
